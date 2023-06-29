@@ -1,0 +1,27 @@
+{% extends "reserveapp/layout.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %} <!-- 이거 쓰자 -->
+{#        <table> <!-- table 태그로 감싸줘야 한다. -->#}
+{#            {{ form.as_table }}#}
+{#        </table>#}
+        {% buttons %}
+{#            <input type="submit" value="저장" class="" />#}
+            <button class="btn btn-primary">
+                저장
+            </button>
+        {% endbuttons %}
+    </form>
+    <hr/>
+    {% if post %}
+        <a href="{{ reservedroom.get_absolute_url }}" class="btn btn-secondary">
+            내용으로
+        </a>
+    {% endif %}
+    <a href="{% url 'reserveapp:reservedroom_list' %}" class="btn btn-primary">
+        목록
+    </a>
+{% endblock content %}

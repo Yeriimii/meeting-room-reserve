@@ -1,0 +1,29 @@
+{% extends 'accounts/layout.html' %}
+
+{% block content %}
+{#    user :#}
+{#        - 로그인: User 모델 인스턴스#}
+{#        - 로그아웃 : AnonymousUser (파이썬 클래스) 인스턴스#}
+
+    <h2>User: {{ user }}</h2>
+    로그인 상태: {{ user.is_authenticated }}
+    <hr>
+
+    {% if user.profile %}
+        <dt>
+            이름 : {{ user.last_name }}{{ user.first_name }}
+        </dt>
+        <dt>
+            전화번호: {{ user.profile.phone_number }}
+        </dt>
+        <dt>
+            Email : {{ user.profile.email }}
+        </dt>
+    {% endif %}
+    <hr>
+
+    <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">
+        프로필 수정
+    </a>
+
+{% endblock content %}
