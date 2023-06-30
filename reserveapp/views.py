@@ -77,3 +77,13 @@ class ReservedRoomDeleteView(LoginRequiredMixin, DeleteView):
 
 
 reservedroom_delete = ReservedRoomDeleteView.as_view()
+
+
+class MyReservedRoomListView(LoginRequiredMixin, ReservedRoomListView):
+
+    def get_queryset(self):
+        qs = super().get_queryset().filter(user=self.request.user)
+        return qs
+
+
+myreservedroom_list = MyReservedRoomListView.as_view()

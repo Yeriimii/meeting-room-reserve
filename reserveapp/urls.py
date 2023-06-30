@@ -9,5 +9,7 @@ urlpatterns = [
     path('<int:pk>/delete/', views.reservedroom_delete, name='reservedroom_delete'),  # Delete
 
     path('', views.reservedroom_list, name='reservedroom_list'),  # Read
-    path('<int:pk>', views.reservedroom_detail, name='reservedroom_detail'),  # Read-Detailed
+    path('<int:pk>/', views.reservedroom_detail, name='reservedroom_detail'),  # Read-Detailed
+
+    path('reservation/', views.myreservedroom_list, name='myreservedroom_list'),  # Read-User
 ]
