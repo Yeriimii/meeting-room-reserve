@@ -11,5 +11,5 @@ urlpatterns = [
     path('', views.reservedroom_list, name='reservedroom_list'),  # Read
     path('<int:pk>/', views.reservedroom_detail, name='reservedroom_detail'),  # Read-Detailed
 
-    path('reservation/', views.myreservedroom_list, name='myreservedroom_list'),  # Read-User
+    path('myreservation/', views.myreservedroom_list, name='myreservedroom_list'),  # Read-User
 ]

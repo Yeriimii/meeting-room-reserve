@@ -12,37 +12,24 @@
 {#            <img src="{{ post.photo.url }}" />#}
 {#        </div>#}
 {#    {% endif %}#}
-    {% if user.profile %}
-        <dl class="dl-horizontal">
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            이름 : {{ user.last_name }}{{ user.first_name }}
+        </dt>
+        {% if user.profile %}
             <dt>
-                이름 : {{ user.last_name }}{{ user.first_name }}
+                전화번호 : {{ user.profile.phone_number }}
             </dt>
+        {% else %}
             <dt>
-                전화번호: {{ user.profile.phone_number }}
+                전화번호 : 전화번호가 없습니다.
             </dt>
-            <dt>
-                Email : {{ user.profile.email }}
-            </dt>
-    {#        <dt>#}
-    {#            예약 시작 시간 : {{ reservedroom.started_at|time }}#}
-    {#        </dt>#}
-    {#        <dt>#}
-    {#            예약 종료 시간 : {{ reservedroom.finished_at|time }}#}
-    {#        </dt>#}
-        </dl>
-    {% else %}
-        <dl class="dl-horizontal">
-            <dt>
-                이름이 등록되지 않았습니다.
-            </dt>
-            <dt>
-                전화번호가 등록되지 않았습니다.
-            </dt>
-            <dt>
-                이메일이 등록되지 않았습니다.
-            </dt>
-        </dl>
-    {% endif %}
+        {% endif %}
+        <dt>
+            Email : {{ user.email }}
+        </dt>
+    </dl>
     <hr/>
 
     <a href="{% url 'reserveapp:reservedroom_list' %}" class="btn btn-info">

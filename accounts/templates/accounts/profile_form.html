@@ -4,7 +4,8 @@
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {% bootstrap_form user_form %}
+        {% bootstrap_form profile_form %}
 {#        <table>#}
 {#            {{ form }}#}
 {#        </table>#}

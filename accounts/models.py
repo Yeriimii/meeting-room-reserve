@@ -16,4 +16,3 @@ class Profile(models.Model):
         validators=[phone_regex],
         verbose_name='전화번호',
     )
-    email = models.EmailField(max_length=254, validators=[EmailValidator])

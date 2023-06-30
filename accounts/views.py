@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, UpdateView, CreateView, DetailView
-from .forms import ProfileForm, CustomUserCreationForm
+from .forms import UserForm, ProfileForm, CustomUserCreationForm
 from .models import Profile
 
 User = get_user_model()
@@ -40,16 +40,21 @@ def profile_edit(request):
         profile = None
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form  = ProfileForm(request.POST, request.FILES, instance=profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
             return redirect('accounts:profile')
     else:
-        form = ProfileForm(instance=profile)
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=profile)
     return render(request, 'accounts/profile_form.html', {
-        'form': form,
+        'user_form': user_form,
+        'profile_form': profile_form,
     })
 
 

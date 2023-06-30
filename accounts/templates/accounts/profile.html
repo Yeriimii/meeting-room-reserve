@@ -8,18 +8,23 @@
     <h2>User: {{ user }}</h2>
     로그인 상태: {{ user.is_authenticated }}
     <hr>
-
-    {% if user.profile %}
+    <dl class="dl-horizontal">
         <dt>
             이름 : {{ user.last_name }}{{ user.first_name }}
         </dt>
+        {% if user.profile %}
+            <dt>
+                전화번호 : {{ user.profile.phone_number }}
+            </dt>
+        {% else %}
+            <dt>
+                전화번호 : 전화번호를 등록해주세요.
+            </dt>
+        {% endif %}
         <dt>
-            전화번호: {{ user.profile.phone_number }}
+            Email : {{ user.email }}
         </dt>
-        <dt>
-            Email : {{ user.profile.email }}
-        </dt>
-    {% endif %}
+    </dl>
     <hr>
 
     <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">
